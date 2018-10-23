@@ -53,6 +53,7 @@ var ProductSchema = mongoose.Schema({
 	sku: String,
 	price: Number
 });
+
 var Products = restful.model('products', ProductSchema);
 Products.methods(['get', 'put','post','delete']);
 Products.register(app, '/api/products');
