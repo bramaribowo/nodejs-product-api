@@ -1,0 +1,11 @@
+{
+	"name": "prototype",
+	"main": "server.js",
+	"dependencies": {
+		"express": "latest",
+		"method-override": "latest",
+		"body-parser": "latest",
+		"mongoose": "latest",
+		"node-restful": "latest"
+	}
+}
