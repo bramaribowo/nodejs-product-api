@@ -15,6 +15,7 @@ else{
   var mongourl = "mongodb://localhost/restful-prototype";
   var rabbiturl = "amqp://localhost";
 }
+
 var sendMessage = function(msg){
     amqp.connect(rabbiturl, function(err, conn) {
       conn.createChannel(function(err, ch) {
@@ -44,6 +45,7 @@ var ProductSchema = mongoose.Schema({
 	sku: String,
 	price: Number
 });
+
 var Products = restful.model('products', ProductSchema);
 Products.methods(['get', 'put','post','delete']);
 
