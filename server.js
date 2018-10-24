@@ -46,28 +46,38 @@ var ProductSchema = mongoose.Schema({
 	price: Number
 });
 
-var Products = restful.model('products', ProductSchema);
-Products.methods(['get', 'put','post','delete']);
+var Product = restful.model('Product', ProductSchema);
+Product.methods(['get', 'put','post','delete']);
 
-Products.after('post', function(req, res, next) {
+Product.after('post', function(req, res, next) {
   console.log("posting message");
   sendMessage("inserting product: " + req.body.sku);
   next(); // Don't forget to call next!
 });
 
-Products.after('put', function(req, res, next) {
+Product.after('put', function(req, res, next) {
   console.log("updating message");
   sendMessage("updating product: " + req.body.sku);
   next(); // Don't forget to call next!
 });
 
-Products.after('delete', function(req, res, next) {
+Product.after('delete', function(req, res, next) {
   console.log("deleting message");
-  sendMessage("deleting product: " + req.body.sku);
+  sendMessage("deleting product id: " + req.query.id);
   next(); // Don't forget to call next!
 });
-Products.register(app, '/api/products');
+
+Product.route('removeall', ['delete'], function(req, res, next) {
+  Product.remove({}, function (err) {
+        if (err) {
+          console.log(err);
+        } 
+    });
+    res.send("records cleared!");
+});
+
+Product.register(app, '/api/products');
 
 app.listen(port, host);
 // sendMessage("test message product: ");
-console.log("Server is on air, port 3000");
+console.log("Server is on air, port " + port);
