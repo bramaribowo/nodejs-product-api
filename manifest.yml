@@ -1,8 +1,9 @@
 ---
 applications:
 - name: node-products-api
-  memory: 512M
+  memory: 256M
   instances: 1
   command: npm install && npm start
   services:
+  - cloudamq
   - node-productsdb
