@@ -46,6 +46,7 @@ var ProductSchema = mongoose.Schema({
 	price: Number
 });
 
+
 var Product = restful.model('Product', ProductSchema);
 Product.methods(['get', 'put','post','delete']);
 
