@@ -84,7 +84,7 @@ var TodoSchema = mongoose.Schema({
 	startDate: String
 });
 
-var Todo = restful.model('Todo', ProductSchema);
+var Todo = restful.model('Todo', TodoSchema);
 Todo.methods(['get', 'put','post','delete']);
 
 Todo.route('removeall', ['delete'], function(req, res, next) {
