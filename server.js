@@ -46,7 +46,6 @@ var ProductSchema = mongoose.Schema({
 	price: Number
 });
 
-
 var Product = restful.model('Product', ProductSchema);
 Product.methods(['get', 'put','post','delete']);
 
@@ -78,6 +77,26 @@ Product.route('removeall', ['delete'], function(req, res, next) {
 });
 
 Product.register(app, '/api/products');
+
+// todo part
+var TodoSchema = mongoose.Schema({
+	name: String,
+	startDate: String
+});
+
+var Todo = restful.model('Todo', ProductSchema);
+Todo.methods(['get', 'put','post','delete']);
+
+Todo.route('removeall', ['delete'], function(req, res, next) {
+  Todo.remove({}, function (err) {
+        if (err) {
+          console.log(err);
+        } 
+    });
+    res.send("records cleared!");
+});
+
+Todo.register(app, '/api/todos');
 
 app.listen(port, host);
 // sendMessage("test message product: ");
